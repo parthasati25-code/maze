@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MazeMaster — Find Your Way Out | DSAL Project</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M7 3v6h4v4H7v8"/>
+            <path d="M17 3v4h-4v4h4v10"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">MazeMaster</span>
+          <span class="brand-badge">DSAL Lab Project</span>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#visualizer" class="nav-link">Interactive Maze</a>
+        <a href="#stack-section" class="nav-link">Stack Visualizer</a>
+        <a href="#learn" class="nav-link">Learn Algorithm</a>
+        <a href="#code" class="nav-link">C++ Source Code</a>
+        <a href="#student-info" class="nav-link">Project Info</a>
+      </div>
+
+      <div class="backend-status-pill" id="backendStatusPill" title="Status of native C++ backend">
+        <span class="status-dot pulsing"></span>
+        <span class="status-label" id="backendStatusText">Connecting C++...</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-tags">
+        <span class="tag tag-cyan">Data Structures &amp; Algorithms Lab</span>
+        <span class="tag tag-navy">Stack &amp; Backtracking</span>
+        <span class="tag tag-outline">C++ Native Backend</span>
+      </div>
+      <h1 class="hero-title">Find Your Way Out.</h1>
+      <p class="hero-subtitle">An interactive exploration of stacks and backtracking.</p>
+      <p class="hero-description">
+        Demonstrating the exact <strong>C++ Stack Backtracking Algorithm</strong> from my midterm laboratory submission.
+        Witness the Last-In, First-Out (LIFO) mechanism in real time as the algorithm pushes unvisited paths
+        and pops dead ends to systematically navigate complex mazes.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#visualizer" class="btn btn-primary btn-large">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Start Solving
+        </a>
+        <a href="#learn" class="btn btn-outline btn-large">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Viva Preparation Guide
+        </a>
+      </div>
+
+      <div class="hero-features-grid">
+        <div class="feature-card">
+          <div class="feature-icon cyan-bg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h3>100% C++ Engine</h3>
+          <p>Directly runs the compiled native C++ binary (<code>solver.exe</code>) with zero client-side simulation.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon navy-bg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="4" rx="1"/>
+              <rect x="4" y="10" width="16" height="4" rx="1"/>
+              <rect x="4" y="16" width="16" height="4" rx="1"/>
+            </svg>
+          </div>
+          <h3>True LIFO Stack</h3>
+          <p>Every push, pop, top inspection, and backtrack is recorded from actual memory operations.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon blue-bg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Original Priority Order</h3>
+          <p>Preserves strict direction hierarchy: <strong>1. Down &rarr; 2. Right &rarr; 3. Up &rarr; 4. Left</strong>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon green-bg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Midterm Exact Match</h3>
+          <p>Includes the 4&times;4 problem statement and sample path from my midterm examination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Maze Visualizer Section -->
+  <section id="visualizer" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Interactive Environment</span>
+      <h2 class="section-title">Maze Configuration &amp; Controls</h2>
+      <p class="section-desc">Create custom maze grids, load preset scenarios, toggle walls, and control algorithm execution.</p>
+    </div>
+
+    <!-- Configuration Toolbar -->
+    <div class="toolbar-card">
+      <div class="toolbar-group">
+        <label class="toolbar-label">Maze Size:</label>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-filter active" data-size="4">4 &times; 4 (Exam)</button>
+          <button class="btn btn-sm btn-filter" data-size="6">6 &times; 6</button>
+          <button class="btn btn-sm btn-filter" data-size="8">8 &times; 8</button>
+          <button class="btn btn-sm btn-filter" data-size="10">10 &times; 10</button>
+        </div>
+        <div class="custom-dim-wrapper">
+          <input type="number" id="customRows" min="2" max="15" value="4" class="input-dim" title="Rows">
+          <span>&times;</span>
+          <input type="number" id="customCols" min="2" max="15" value="4" class="input-dim" title="Cols">
+          <button class="btn btn-sm btn-secondary" id="applyCustomDimBtn">Apply</button>
+        </div>
+      </div>
+
+      <div class="toolbar-group">
+        <label class="toolbar-label">Preset Mazes:</label>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-preset active" id="presetMidtermBtn">Midterm 4&times;4</button>
+          <button class="btn btn-sm btn-preset" id="presetBacktrackBtn">Backtracking Test</button>
+          <button class="btn btn-sm btn-preset" id="presetNoPathBtn">No Path</button>
+          <button class="btn btn-sm btn-preset" id="presetSpiralBtn">Spiral Maze</button>
+          <button class="btn btn-sm btn-preset" id="presetRandomBtn">Random Maze</button>
+        </div>
+      </div>
+
+      <div class="toolbar-group">
+        <label class="toolbar-label">Edit Mode:</label>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-mode active" data-mode="wall" id="modeWallBtn">
+            <span class="mode-swatch wall-swatch"></span> Toggle Wall
+          </button>
+          <button class="btn btn-sm btn-mode" data-mode="start" id="modeStartBtn">
+            <span class="mode-swatch start-swatch">S</span> Set Start
+          </button>
+          <button class="btn btn-sm btn-mode" data-mode="dest" id="modeDestBtn">
+            <span class="mode-swatch dest-swatch">D</span> Set Dest
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visualizer Canvas & Controls Layout -->
+    <div class="visualizer-grid-layout">
+
+      <!-- Left Column: The Interactive Maze Canvas -->
+      <div class="maze-panel card">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h3>Maze Grid Canvas</h3>
+            <span class="badge" id="gridDimensionsBadge">4 &times; 4 Grid</span>
+          </div>
+          <div class="legend">
+            <span class="legend-item"><span class="legend-dot dot-start"></span> Start (S)</span>
+            <span class="legend-item"><span class="legend-dot dot-dest"></span> Dest (D)</span>
+            <span class="legend-item"><span class="legend-dot dot-wall"></span> Wall (0)</span>
+            <span class="legend-item"><span class="legend-dot dot-open"></span> Open (1)</span>
+            <span class="legend-item"><span class="legend-dot dot-current"></span> Top</span>
+            <span class="legend-item"><span class="legend-dot dot-explored"></span> Visited</span>
+            <span class="legend-item"><span class="legend-dot dot-backtrack"></span> Popped</span>
+            <span class="legend-item"><span class="legend-dot dot-path"></span> Final Path</span>
+          </div>
+        </div>
+
+        <div class="maze-canvas-container">
+          <div id="mazeGrid" class="maze-grid">
+            <!-- Dynamically populated by script.js -->
+          </div>
+        </div>
+
+        <!-- Solver Control Bar -->
+        <div class="solver-controls-card">
+          <div class="primary-controls">
+            <button class="btn btn-solve" id="solveBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Solve Maze (C++)</span>
+            </button>
+
+            <button class="btn btn-control" id="playPauseBtn" disabled title="Play or Pause Animation">
+              <svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <svg id="pauseIcon" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+              </svg>
+              <span id="playPauseLabel">Play</span>
+            </button>
+
+            <button class="btn btn-control" id="stepPrevBtn" disabled title="Step Backward">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="19 20 9 12 19 4 19 20"/>
+                <line x1="5" y1="19" x2="5" y2="5"/>
+              </svg>
+              <span>Prev</span>
+            </button>
+
+            <button class="btn btn-control" id="stepNextBtn" disabled title="Step Forward">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 4 15 12 5 20 5 4"/>
+                <line x1="19" y1="5" x2="19" y2="19"/>
+              </svg>
+              <span>Next</span>
+            </button>
+
+            <button class="btn btn-control btn-warning" id="resetBtn" title="Reset Exploration State">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              <span>Reset</span>
+            </button>
+
+            <button class="btn btn-control btn-danger" id="clearBtn" title="Clear All Walls">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+
+          <div class="speed-control-wrapper">
+            <span class="speed-label">Speed:</span>
+            <input type="range" id="speedSlider" min="1" max="5" value="3" class="slider" title="Animation Speed">
+            <span class="speed-val" id="speedLabel">Normal</span>
+          </div>
+        </div>
+
+        <!-- Status Alert Banner -->
+        <div id="statusAlertBanner" class="status-banner idle">
+          <div class="banner-icon" id="bannerIcon">&#9679;</div>
+          <div class="banner-text" id="bannerText">Click <strong>Solve Maze (C++)</strong> to execute the stack backtracking algorithm.</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Stack Visualizer & Metrics -->
+      <div id="stack-section" class="diagnostics-panel card">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h3>Live Stack Data Structure</h3>
+            <span class="badge badge-cyan" id="stackDepthBadge">Depth: 0</span>
+          </div>
+          <span class="tag tag-sm tag-outline">LIFO Container</span>
+        </div>
+
+        <!-- Metrics Dashboard Cards -->
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-label">Current Cell (Top)</span>
+            <span class="metric-value cyan-text" id="metricCurrentCell">--</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Stack Size</span>
+            <span class="metric-value" id="metricStackSize">0</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Visited Cells</span>
+            <span class="metric-value green-text" id="metricVisitedCount">0</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Backtracks (Pops)</span>
+            <span class="metric-value coral-text" id="metricBacktrackCount">0</span>
+          </div>
+        </div>
+
+        <!-- Physical Stack Container Simulation -->
+        <div class="stack-visualizer-container">
+          <div class="stack-top-pointer">
+            <span class="pointer-arrow">&darr;</span>
+            <span class="pointer-text">TOP OF STACK [s.top()]</span>
+          </div>
+
+          <div class="stack-vessel" id="stackVessel">
+            <div class="stack-empty-placeholder" id="stackEmptyPlaceholder">
+              <span>Stack is empty</span>
+              <small>Elements push here during search</small>
+            </div>
+            <!-- Elements dynamically pushed/popped here -->
+          </div>
+
+          <div class="stack-base-plate">
+            <span>STACK BASE (BOTTOM)</span>
+          </div>
+        </div>
+
+        <!-- Reconstructed Path Banner -->
+        <div class="path-result-box" id="pathResultBox">
+          <div class="path-header">
+            <span class="path-title">Reconstructed Solution Path:</span>
+            <button class="btn btn-xs btn-outline" id="copyPathBtn" title="Copy Path to Clipboard">Copy</button>
+          </div>
+          <div class="path-string" id="pathString">
+            No path calculated yet.
+          </div>
+        </div>
+
+        <!-- Live Step Execution Terminal Log -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="terminal-title">C++ Execution Event Log</span>
+            <span class="terminal-step" id="terminalStepCounter">Step: 0 / 0</span>
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <div class="terminal-line text-muted">// C++ solver initialized. Waiting for input...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn the Algorithm (DSAL Viva Guide) Section -->
+  <section id="learn" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">DSAL Theory &amp; Viva Preparation</span>
+      <h2 class="section-title">Learn the Algorithm</h2>
+      <p class="section-desc">Comprehensive conceptual breakdown, complexities, and expected viva questions designed for your end-term laboratory examination.</p>
+    </div>
+
+    <div class="theory-grid">
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="4" rx="1"/>
+            <rect x="4" y="10" width="16" height="4" rx="1"/>
+            <rect x="4" y="16" width="16" height="4" rx="1"/>
+          </svg>
+        </div>
+        <h3>1. What is a Stack? (LIFO)</h3>
+        <p>
+          A <strong>Stack</strong> is a linear data structure following the <strong>Last-In, First-Out (LIFO)</strong> principle.
+          The most recently inserted element (via <code>push()</code>) is always the first one to be removed (via <code>pop()</code>).
+          Access is strictly restricted to a single endpoint called the <strong>top</strong>.
+        </p>
+        <ul class="theory-bullets">
+          <li><code>push(Cell)</code>: Inserts a newly discovered cell onto top of stack.</li>
+          <li><code>pop()</code>: Deletes the top cell when retreating from a dead end.</li>
+          <li><code>top()</code>: Inspects current coordinates without removing.</li>
+          <li><code>empty()</code>: Checks if stack has remaining coordinates to explore.</li>
+        </ul>
+      </div>
+
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+          </svg>
+        </div>
+        <h3>2. What is Backtracking?</h3>
+        <p>
+          <strong>Backtracking</strong> is an algorithmic paradigm that systematically searches for solutions by exploring all potential paths.
+          When the search hits a <em>dead end</em> (a state where no valid move can lead to the destination), the algorithm <strong>abandons the branch</strong>
+          and backtracks to the previous decision point.
+        </p>
+        <ul class="theory-bullets">
+          <li>Systematic trial-and-error approach.</li>
+          <li>Never visits an invalid or blocked cell twice.</li>
+          <li>Restores state dynamically using the stack history.</li>
+        </ul>
+      </div>
+
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <h3>3. Why is Stack Suitable for this?</h3>
+        <p>
+          A stack natively records the exact trail of our journey.
+          The top element is always our <strong>current position</strong>.
+          When we hit a dead end, calling <code>s.pop()</code> automatically returns us to the <strong>exact cell we came from</strong>,
+          allowing our <code>else if</code> cascade to evaluate the remaining candidate directions seamlessly.
+        </p>
+      </div>
+
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>4. The Visited Array (`bool** visited`)</h3>
+        <p>
+          Without tracking visited cells, the solver would jump endlessly back and forth between adjacent open cells (e.g., from (0,0) to (1,0) and back to (0,0)),
+          causing an <strong>infinite loop</strong>. Marking cells as <code>visited = true</code> upon push guarantees every cell is evaluated at most once.
+        </p>
+      </div>
+
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19 12 12 19 5 12"/>
+          </svg>
+        </div>
+        <h3>5. Direction Priority Hierarchy</h3>
+        <p>
+          My algorithm evaluates neighbors in a strict four-step deterministic priority order:
+        </p>
+        <ol class="theory-ordered">
+          <li><strong>Down:</strong> <code>(r + 1, c)</code></li>
+          <li><strong>Right:</strong> <code>(r, c + 1)</code></li>
+          <li><strong>Up:</strong> <code>(r - 1, c)</code></li>
+          <li><strong>Left:</strong> <code>(r, c - 1)</code></li>
+        </ol>
+        <p>The first valid unvisited neighbor is selected. If all 4 fail, <code>moved</code> remains <code>false</code>, triggering <code>s.pop()</code>.</p>
+      </div>
+
+      <div class="theory-card">
+        <div class="theory-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </div>
+        <h3>6. What Happens at a Dead End?</h3>
+        <p>
+          When the cell at <code>s.top()</code> has no valid unvisited neighbor in any of the 4 directions, the flag <code>bool moved</code> remains <code>false</code>.
+          The condition <code>if (!moved) s.pop();</code> executes. The dead-end cell is discarded from the stack, and the while loop inspects the previous top.
+        </p>
+      </div>
+    </div>
+
+    <!-- DFS vs BFS Comparison Table -->
+    <div class="card comparison-card">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <h3>Depth-First Search (DFS) vs Breadth-First Search (BFS)</h3>
+          <span class="badge badge-cyan">Viva Favorite Question</span>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="dsal-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>DFS (Our Project Approach)</th>
+              <th>BFS (Alternative Approach)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary Data Structure</strong></td>
+              <td><span class="code-tag">Stack (LIFO)</span></td>
+              <td><span class="code-tag">Queue (FIFO)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Exploration Style</strong></td>
+              <td>Deep dive along one path until goal or dead end is reached</td>
+              <td>Layer-by-layer radial expansion across all equidistant neighbors</td>
+            </tr>
+            <tr>
+              <td><strong>Shortest Path Guarantee</strong></td>
+              <td><strong>No.</strong> Returns the <em>first</em> path found according to direction priority</td>
+              <td><strong>Yes.</strong> Guarantees the shortest path in unweighted grids</td>
+            </tr>
+            <tr>
+              <td><strong>Memory Consumption</strong></td>
+              <td>$O(R \times C)$ worst-case; typically smaller proportional to maximum path depth</td>
+              <td>$O(R \times C)$; stores an entire wavefront of boundary cells in queue</td>
+            </tr>
+            <tr>
+              <td><strong>Backtracking Mechanism</strong></td>
+              <td>Explicitly unwinds via <code>s.pop()</code></td>
+              <td>No unwinding needed; parent pointers reconstruct path at the end</td>
+            </tr>
+            <tr>
+              <td><strong>Ideal Use Cases</strong></td>
+              <td>Maze solving, puzzle solving, topological sorting, syntax parsing</td>
+              <td>Shortest path in networks, GPS route planning, peer-to-peer flooding</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Complexity Analysis Cards -->
+    <div class="complexity-grid">
+      <div class="complexity-box">
+        <div class="complexity-header">
+          <span class="complexity-badge">Time Complexity</span>
+          <span class="complexity-math">$\mathcal{O}(R \times C)$</span>
+        </div>
+        <p>
+          In a grid of $R$ rows and $C$ columns, there are at most $R \times C$ total cells.
+          Because every cell is marked in the <code>visited</code> array upon being pushed, <strong>no cell is ever pushed or popped more than once</strong>.
+          Evaluating the four neighbors takes $\mathcal{O}(1)$ constant time per cell. Hence, total runtime is strictly bounded by $\mathcal{O}(R \times C)$.
+        </p>
+      </div>
+
+      <div class="complexity-box">
+        <div class="complexity-header">
+          <span class="complexity-badge">Auxiliary Space Complexity</span>
+          <span class="complexity-math">$\mathcal{O}(R \times C)$</span>
+        </div>
+        <p>
+          The auxiliary space consists of two main structures:
+          (1) The dynamically allocated 2D <code>visited</code> boolean table requiring $R \times C$ memory;
+          (2) The STL <code>stack&lt;Cell&gt;</code>, which in the worst-case (a snake-like maze) holds up to $R \times C$ cells.
+          Thus, total auxiliary space is $\mathcal{O}(R \times C)$.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- C++ Source Code & Architecture Section -->
+  <section id="code" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Code Walkthrough &amp; Architecture</span>
+      <h2 class="section-title">C++ Source Code</h2>
+      <p class="section-desc">Inspect the original verbatim code from my exam submission alongside the production backend bridge.</p>
+    </div>
+
+    <div class="code-viewer-card card">
+      <div class="code-viewer-tabs">
+        <button class="code-tab active" data-tab="original">Original Midterm Submission (C++)</button>
+        <button class="code-tab" data-tab="backend">Production Backend Solver (C++)</button>
+        <button class="code-tab" data-tab="bridge">Python Bridge Server (server.py)</button>
+      </div>
+
+      <div class="code-viewer-content">
+        <div class="code-pane active" id="pane-original">
+          <div class="pane-meta">
+            <span>File: <code>backend/original_code.cpp</code></span>
+            <span class="tag tag-sm">Extracted from PDF</span>
+          </div>
+          <pre class="code-block"><code id="codeBlockOriginal">// Loading original C++ code...</code></pre>
+        </div>
+
+        <div class="code-pane" id="pane-backend">
+          <div class="pane-meta">
+            <span>File: <code>backend/solver.cpp</code></span>
+            <span class="tag tag-sm tag-cyan">Compiled as solver.exe</span>
+          </div>
+          <pre class="code-block"><code id="codeBlockBackend">// Loading backend C++ code...</code></pre>
+        </div>
+
+        <div class="code-pane" id="pane-bridge">
+          <div class="pane-meta">
+            <span>File: <code>backend/server.py</code></span>
+            <span class="tag tag-sm tag-outline">Zero-dependency HTTP Bridge</span>
+          </div>
+          <pre class="code-block"><code id="codeBlockBridge">// Loading server.py code...</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Explanation Cards -->
+    <div class="code-breakdown-grid">
+      <div class="breakdown-card">
+        <h4>1. <code>struct Cell</code></h4>
+        <p>Encapsulates row and column index into a lightweight value type. Stored directly within <code>std::stack&lt;Cell&gt;</code> without pointer overhead.</p>
+      </div>
+      <div class="breakdown-card">
+        <h4>2. <code>isValid()</code></h4>
+        <p>Ensures coordinate within $[0, rows-1]$ and $[0, cols-1]$, validates <code>maze[r][c] == 1</code> (open path), and checks <code>!visited[r][c]</code>.</p>
+      </div>
+      <div class="breakdown-card">
+        <h4>3. <code>s.push()</code> &amp; <code>visited[r][c] = true</code></h4>
+        <p>Cell is marked visited <em>immediately</em> when pushed. This critical design choice prevents cyclic re-exploration.</p>
+      </div>
+      <div class="breakdown-card">
+        <h4>4. Path Reversal via Secondary Stack</h4>
+        <p>Because the primary stack holds the path from destination down to start (LIFO), popping into a secondary stack and printing reverses it to proper start-to-destination order.</p>
+      </div>
+      <div class="breakdown-card">
+        <h4>5. Dynamic Memory Management</h4>
+        <p>All dynamically allocated 2D arrays (<code>new int*[rows]</code> and <code>new bool*[rows]</code>) are cleanly deleted via <code>delete[]</code> loops to eliminate memory leaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Information (Editable Student Details) Section -->
+  <section id="student-info" class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Academic Submission Card</span>
+      <h2 class="section-title">Project &amp; Student Information</h2>
+      <p class="section-desc">Editable placeholders for your college submission and viva demonstration. Click "Edit Details" to customize.</p>
+    </div>
+
+    <div class="student-card-wrapper">
+      <div class="student-card card">
+        <div class="student-card-header">
+          <div class="student-avatar">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 id="displayStudentName">Parth</h3>
+            <span class="badge badge-cyan" id="displayPRN">PRN: 125B1B286</span>
+          </div>
+          <button class="btn btn-sm btn-outline edit-student-btn" id="editStudentBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            Edit Details
+          </button>
+        </div>
+
+        <div class="student-details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Division:</span>
+            <span class="detail-value" id="displayDivision">Div B</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">College Name:</span>
+            <span class="detail-value" id="displayCollege">Pimpri Chinchwad College of Engineering (PCCOE)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Course / Degree:</span>
+            <span class="detail-value" id="displayDegree">B.Tech Computer Engineering</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Subject:</span>
+            <span class="detail-value" id="displaySubject">Data Structures and Algorithms Laboratory (DSAL)</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="detail-label">Problem Statement:</span>
+            <span class="detail-value" id="displayProblemStatement">Maze Backtracking Using Stack</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="detail-label">Backend Architecture:</span>
+            <span class="detail-value font-mono">Compiled C++ Native Binary (MinGW g++) &bull; Local HTTP Bridge &bull; Vanilla JS UI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edit Student Details Modal -->
+  <div class="modal-overlay hidden" id="studentModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Edit Student Submission Details</h3>
+        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Student Name</label>
+          <input type="text" id="inputStudentName" class="form-input" placeholder="e.g. Parth / Denesh Bhan">
+        </div>
+        <div class="form-group">
+          <label>PRN / Roll Number</label>
+          <input type="text" id="inputPRN" class="form-input" placeholder="e.g. 125B1B286">
+        </div>
+        <div class="form-group">
+          <label>Division</label>
+          <input type="text" id="inputDivision" class="form-input" placeholder="e.g. Div B">
+        </div>
+        <div class="form-group">
+          <label>College Name</label>
+          <input type="text" id="inputCollege" class="form-input" placeholder="e.g. Pimpri Chinchwad College of Engineering (PCCOE)">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" id="inputSubject" class="form-input" value="Data Structures and Algorithms Laboratory (DSAL)">
+        </div>
+        <div class="form-group">
+          <label>Problem Statement</label>
+          <input type="text" id="inputProblemStatement" class="form-input" value="Maze Backtracking Using Stack">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="resetStudentDefaultBtn">Reset to Defaults</button>
+        <button class="btn btn-primary" id="saveStudentBtn">Save Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <strong>MazeMaster</strong> &bull; DSAL End-Term Laboratory Project
+      </div>
+      <div class="footer-right">
+        Built with C++11 Native Algorithm &bull; Department of Computer Engineering
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
